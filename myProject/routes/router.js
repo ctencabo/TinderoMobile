@@ -10,20 +10,31 @@ import Signup from '../screens/signup';
 export default function RouterComponent() {
     return (
         <Router>
-            <Scene key='root'>
-                <Scene
-                    key        = 'landingpage'
-                    component  = {LandingPage}
-                    title      = 'Landing Page'
-                    hideNavBar = {true}
-                />
-                <Scene
-                    key        = 'signup'
-                    component  = {Signup}
-                    title      = 'Register'
-                    hideNavBar = {true}
-                />
-            </Scene>
+            <Stack hideNavBar key='root'>
+                <Stack
+                    hideNavBar
+                    key  = 'auth'
+                    type = 'reset'
+                >
+                    <Scene
+                        key        = 'landingpage'
+                        component  = {LandingPage}
+                        title      = 'Landing Page'
+                        // hideNavBar = {true}
+                    />
+                    <Scene
+                        key        = 'signup'
+                        component  = {Signup}
+                        title      = 'Register'
+                        // hideNavBar = {true}
+                    />
+                </Stack>
+                {/* <Stack
+                    key='main'
+                >
+
+                </Stack> */}
+            </Stack>
         </Router>
     )
 }
