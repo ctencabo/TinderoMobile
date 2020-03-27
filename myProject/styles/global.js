@@ -24,13 +24,13 @@ export const globalStyles = StyleSheet.create({
     },
 
     titleText: {
-        fontFamily: 'lato-bold',
+        // fontFamily: 'lato-bold',
         color: 'black',
         fontSize: 24
     },
 
     text: {
-        fontFamily: 'lato',
+        // fontFamily: 'lato',
         color: 'black',
         fontSize: 16
     },

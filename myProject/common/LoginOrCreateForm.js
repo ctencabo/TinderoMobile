@@ -13,9 +13,10 @@ import { globalStyles } from '../styles/global';
 
 class LoginOrCreateForm extends Component {
     state = {
-        username: '',
-        password: '',
-        confirmPassword: ''
+        username : '',
+        password : '',
+        firstName: '',
+        lastName : ''
     }
 
     onUsernameChange(text) {
@@ -26,17 +27,22 @@ class LoginOrCreateForm extends Component {
         this.setState({ password: text });
     }
 
-    onConfirmPasswordChange(text) {
-        this.setState({ confirmPassword: text });
+    onFirstNameChange(text) {
+        this.setState({ firstName: text });
+    }
+
+    onLastNameChange(text) {
+        this.setState({ lastName: text});
     }
 
     renderCreateLogo() {
         const { titleText }        = globalStyles;
-        const { logo, centerText } = styles;
+        const { logo, signupLogo, centerText } = styles;
+        const logoStyle = this.props.create ? signupLogo : logo
 
         if(!this.props.create) {
             return (
-                <View style={logo}>
+                <View style={logoStyle}>
                     <Image
                         style      = {{ width: 300, height: 300}} 
                         resizeMode = "contain"
@@ -46,7 +52,7 @@ class LoginOrCreateForm extends Component {
             )
         } else {
             return (
-                <View style={logo}>
+                <View style={logoStyle}>
                     <Text style={[titleText, centerText]}>Register</Text>
                 </View>
             )            
@@ -55,16 +61,26 @@ class LoginOrCreateForm extends Component {
 
     renderCreateForm() {
         const { input }      = globalStyles;
-        const { formInput } = styles;
+        const { formInput }  = styles;
+        const textInputStyle = [input, formInput]
 
         if( this.props.create ) {
             return (
-                <TextInput 
-                    style           = {[input, formInput]}
-                    secureTextEntry = {true}
-                    placeholder     = "Confirm Password"
-                    onChangeText    = {this.onConfirmPasswordChange.bind(this)}
-                />
+                <View>
+                    <TextInput
+                        placeholder  = "First Name"
+                        autoCorrect  = {false}
+                        onChangeText = {this.onFirstNameChange.bind(this)}
+                        style        = {textInputStyle}
+                    />
+                    <TextInput
+                        placeholder  = "Last Name"
+                        autoCorrect  = {false}
+                        onChangeText = {this.onLastNameChange.bind(this)}
+                        style        = {textInputStyle}
+                    />
+                </View>
+                
             )            
         }
     }
@@ -116,7 +132,8 @@ class LoginOrCreateForm extends Component {
         }
 
         if( this.props.create ) {
-            payload.confirmPassword = this.state.confirmPassword;
+            payload.first_name = this.state.firstName;
+            payload.last_name  = this.state.lastName;
         }
 
         axios
@@ -149,13 +166,15 @@ class LoginOrCreateForm extends Component {
                 {this.renderCreateLogo()}
                 <View style={auth}>
                     <TextInput 
-                        style       = {inputStyles}
-                        placeholder = "Username"
+                        style        = {inputStyles}
+                        placeholder  = "Username"
+                        onChangeText = {this.onUsernameChange.bind(this)}
                     />
                     <TextInput 
                         style           = {inputStyles}
                         secureTextEntry = {true}
                         placeholder     = "Password"
+                        onChangeText    = {this.onPasswordChange.bind(this)}
                     />
                     {this.renderCreateForm()}
                     {this.renderButton()}
@@ -173,6 +192,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
+
+    signupLogo: {
+        paddingTop: 30,
+        flex: 3,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },  
 
     auth: {
         flex: 3,
@@ -199,8 +225,8 @@ const styles = StyleSheet.create({
         borderRadius: 25,
     },
 
-    loginInput: {
-        width: '70%',
+    formInput: {
+        width: 300,
         borderRadius: 25,
         fontSize: 16,
         margin: 10,
@@ -209,11 +235,11 @@ const styles = StyleSheet.create({
         color: 'black'
     },
 
-    formInput: {
+    loginInput: {
         borderWidth: 0,
         borderBottomColor: 'black',
         borderBottomWidth: 1,
-        width: '70%',
+        width: 300,
         borderRadius: 25,
         fontSize: 16,
         margin: 10,

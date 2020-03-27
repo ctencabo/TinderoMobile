@@ -6,6 +6,7 @@ import {
 } from 'react-native-router-flux';
 import LandingPage from '../screens/landingpage';
 import Signup from '../screens/signup';
+import Home from '../screens/home';
 
 export default function RouterComponent() {
     return (
@@ -20,20 +21,23 @@ export default function RouterComponent() {
                         key        = 'landingpage'
                         component  = {LandingPage}
                         title      = 'Landing Page'
-                        // hideNavBar = {true}
                     />
                     <Scene
                         key        = 'signup'
                         component  = {Signup}
                         title      = 'Register'
-                        // hideNavBar = {true}
                     />
                 </Stack>
-                {/* <Stack
-                    key='main'
+                <Stack
+                    key  = 'main'
+                    type = 'reset'
                 >
-
-                </Stack> */}
+                    <Scene
+                        title     = "Home"
+                        key       = "home"
+                        component = {Home}
+                    />
+                </Stack>
             </Stack>
         </Router>
     )
