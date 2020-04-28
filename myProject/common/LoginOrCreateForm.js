@@ -46,7 +46,7 @@ class LoginOrCreateForm extends Component {
                     <Image
                         style      = {{ width: 300, height: 300}} 
                         resizeMode = "contain"
-                        source     = {require("../assets/logo.png")}
+                        source     = {require("../assets/images/logo.png")}
                     />
                 </View>
             )
@@ -125,27 +125,35 @@ class LoginOrCreateForm extends Component {
     }
 
     handleRequest() {
-        const endpoint = this.props.create ? 'register' : 'login';
-        const payload = { 
-            username: this.state.username,
-            password: this.state.password   
-        }
+        // const endpoint = this.props.create ? 'register' : 'login';
+        // const payload = { 
+        //     username: this.state.username,
+        //     password: this.state.password   
+        // }
+
+        // if( this.props.create ) {
+        //     payload.first_name = this.state.firstName;
+        //     payload.last_name  = this.state.lastName;
+        // }
+
+        // axios
+        //     .post(`/auth/${endpoint}/`, payload)
+        //     .then(Response => {
+        //         const { token, user } = response.data;
+
+        //         axios.defaults.headers.common.Authorization = `Token ${token}`;
+
+        //         console.log('Here');
+
+        //         Actions.main()
+        //     })
+        //     .catch(error => console.log(error));
 
         if( this.props.create ) {
-            payload.first_name = this.state.firstName;
-            payload.last_name  = this.state.lastName;
+            Actions.landingpage();
+        } else {
+            Actions.main();
         }
-
-        axios
-            .post(`/auth/${endpoint}/`, payload)
-            .then(Response => {
-                const { token, user } = response.data;
-
-                axios.defaults.headers.common.Authorization = `Token ${token}`;
-
-                Actions.main()
-            })
-            .catch(error => console.log(error));
     }
 
     submitHandler() {
@@ -261,6 +269,7 @@ const styles = StyleSheet.create({
     centerText: {
         marginBottom: 50,
         fontSize: 60,
+        fontWeight: 900,
         color: '#ef6b00'
     },
 });

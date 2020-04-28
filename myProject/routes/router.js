@@ -29,6 +29,7 @@ export default function RouterComponent() {
                     />
                 </Stack>
                 <Stack
+                    hideNavBar
                     key  = 'main'
                     type = 'reset'
                 >

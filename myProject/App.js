@@ -3,6 +3,7 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import Router from './routes/router';
 import axios from 'axios';
+import Home from './screens/home';
 
 // const getFonts = () => Font.loadAsync({
 //     'lato'     : require('./assets/fonts/Lato-Regular.ttf'),
@@ -35,6 +36,7 @@ export default class App extends Component {
     render(){
         return (
             <Router />
+            // < Home />
         )
     }
         
