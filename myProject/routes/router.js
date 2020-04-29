@@ -7,6 +7,7 @@ import {
 import LandingPage from '../screens/landingpage';
 import Signup from '../screens/signup';
 import Home from '../screens/home';
+import Header from '../common/Header';
 
 export default function RouterComponent() {
     return (
@@ -29,7 +30,8 @@ export default function RouterComponent() {
                     />
                 </Stack>
                 <Stack
-                    hideNavBar
+                    // hideNavBar
+                    navBar = {Header}
                     key  = 'main'
                     type = 'reset'
                 >

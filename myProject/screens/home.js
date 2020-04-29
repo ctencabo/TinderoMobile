@@ -8,16 +8,13 @@ const { width, height } = Dimensions.get("window");
 // const φ = (1 + Math.sqrt(5)) / 2;
 const w = width - 36;
 // const h = w * φ;
-const h = height - 200;
+const h = height - 250;
 
 
 class Home extends Component {
     render() {
         return (
             <SafeAreaView style = {styles.container}>
-                <View style = {styles.header}>
-                    {/* TO-DO */}
-                </View>
                 <View style = {styles.cards}>
                     < Card />
                 </View>
@@ -64,6 +61,7 @@ const styles = StyleSheet.create({
         width: w,
         height: h,
         marginLeft: 18,
+        marginTop: 50,
     },
     footer: {
         flex: 1,

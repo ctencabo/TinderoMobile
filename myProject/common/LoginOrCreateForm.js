@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
     centerText: {
         marginBottom: 50,
         fontSize: 60,
-        fontWeight: 900,
+        fontWeight: '900',
         color: '#ef6b00'
     },
 });
