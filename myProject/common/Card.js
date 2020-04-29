@@ -18,7 +18,7 @@ class Card extends Component {
                     </View>
                     <View style = { styles.footer } >
                         {/* TO-DO */}
-                        <Text style={ styles.name }>Placeholder</Text>
+                        <Text style={ styles.name }>{this.props.name}</Text>
                         <Text style={ styles.tags }>Tags: Any, Song, Hip-hop</Text>
                     </View>
                 </View>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Dimensions, SafeAreaView, StyleSheet } from 'react-native';
 import { Feather as Icon } from "@expo/vector-icons";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import SwipeCards from 'react-native-swipe-cards';
 import Card from '../common/Card';
 
 const { width, height } = Dimensions.get("window");
@@ -12,22 +13,48 @@ const h = height - 250;
 
 
 class Home extends Component {
+    state = {
+        cards: [
+            {name: "Any Song", image: '../assets/image/Zico-Any-song.jpg'},
+        ]
+    }
+
+    handleYup (card) {
+        console.log(`Yup for ${card.name}`);
+    }
+
+    handleNope (card) {
+        console.log(`Nope for ${card.name}`);
+    }
+
+
     render() {
         return (
             <SafeAreaView style = {styles.container}>
-                <View style = {styles.cards}>
-                    < Card />
-                </View>
+                <View style = {styles.deck}>
+                    <SwipeCards 
+                        cards      = {this.state.cards}
+                        renderCard = {(cardData) => {
+                            return (
+                                <View style = {styles.cards}>
+                                    < Card {...cardData}/>
+                                </View>
+                            )
+                        }}
+                        handleYup  = {this.handleYup}
+                        handleNope = {this.handleNope}
+                    />
+                </View>                
                 <View style={styles.footer}>
                     <TouchableOpacity 
                         style   = {styles.circle}
-                        onPress = {this.dislikeHandler.bind(this)}
+                        onPress = {this.handleYup}
                     >
                         <Icon name="x" size={32} color="#ec5288" />
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style   = {styles.circle}
-                        onPress = {this.likeHandler.bind(this)}
+                        onPress = {this.handleNope}
                     >
                         <Icon name="heart" size={32} color="#6ee3b4" />
                     </TouchableOpacity>
@@ -51,22 +78,22 @@ const styles = StyleSheet.create({
         backgroundColor: "#fbfaff",
         justifyContent: "space-evenly",
     },
-    header: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        padding: 16,
+    deck: {
+        flex: 4,
+        width: w,
+        height: h,
+        marginLeft: 18,
+        marginTop: 100,
     },
     cards: {
         width: w,
         height: h,
-        marginLeft: 18,
-        marginTop: 50,
     },
     footer: {
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-evenly",
+        marginTop: 75,
         padding: 16,
     },
     circle: {
