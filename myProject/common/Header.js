@@ -10,31 +10,35 @@ import { MaterialIcons as Icon } from "@expo/vector-icons";
 import { Actions } from 'react-native-router-flux';
 
 class Header extends Component{
-    renderLeftComponent() {
+    // renderLeftComponent() {
 
-    }
+    // }
 
 
-    renderLogo() {
-        return (
-            <Image 
-                style = {styles.headerImage} 
-                resizeMode = "contain"
-                source = {require('../assets/images/logo.png')} 
-            />
-        )
-    }
+    // renderLogo() {
+    //     return (
+    //         <Image 
+    //             style = {styles.headerImage} 
+    //             resizeMode = "contain"
+    //             source = {require('../assets/images/logo.png')} 
+    //         />
+    //     )
+    // }
 
-    renderRightComponent() {
-        return (
-            <TouchableWithoutFeedback>
-                <Text style = {styles.text}>Settings</Text>
-            </TouchableWithoutFeedback>
-        )
-    }
+    // renderRightComponent() {
+    //     return (
+    //         <TouchableWithoutFeedback>
+    //             <Text style = {styles.text}>Settings</Text>
+    //         </TouchableWithoutFeedback>
+    //     )
+    // }
 
     menuHandler() {
         console.log("Menu");
+    }
+
+    settingsHandler() {
+        Actions.settings();
     }
 
     render() {
@@ -55,7 +59,7 @@ class Header extends Component{
                         resizeMode = "contain"
                         source = {require('../assets/images/logo.png')} 
                     />
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this.settingsHandler.bind(this)}>
                         <Icon 
                             name  = "settings" 
                             size  = {32} 

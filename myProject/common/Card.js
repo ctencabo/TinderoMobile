@@ -9,17 +9,19 @@ import {
 class Card extends Component {
 
     render() {
+        const { image, overlay, header, footer, name, tags } = styles;
+
         return (
             <View style = {StyleSheet.absoluteFill} >
-                <Image style = { styles.image } source = {require('../assets/images/Zico-Any-song.jpg')} />
-                <View style = { styles.overlay } >
-                    <View style = { styles.header } >
+                <Image style = { image } source = {this.props.image} />
+                <View style = { overlay } >
+                    <View style = { header } >
                         {/* TO-DO */}
                     </View>
-                    <View style = { styles.footer } >
+                    <View style = { footer } >
                         {/* TO-DO */}
-                        <Text style={ styles.name }>{this.props.name}</Text>
-                        <Text style={ styles.tags }>Tags: Any, Song, Hip-hop</Text>
+                        <Text style={ name }>{this.props.name}</Text>
+                        <Text style={ [name, tags] }>Tags: {this.props.tags}</Text>
                     </View>
                 </View>
             </View>
@@ -37,7 +39,6 @@ const styles = StyleSheet.create({
     overlay: {
         flex: 1,
         justifyContent: "space-between",
-        padding: 16,
     },
     header: {
         flexDirection: "row",
@@ -45,14 +46,19 @@ const styles = StyleSheet.create({
     },
     footer: {
         flexDirection: "column",
+        backgroundColor: 'rgba(0,0,0,.6)',
+        borderBottomEndRadius: 8,
+        borderBottomStartRadius: 8,
     },
     name: {
         color: "white",
         fontSize: 32,
+        paddingLeft: 10,
+        opacity: 1
     },
     tags: {
-        color: "white",
         fontSize: 12,
+        paddingBottom: 10,
     },
 })
 

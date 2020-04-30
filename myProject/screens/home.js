@@ -15,8 +15,50 @@ const h = height - 250;
 class Home extends Component {
     state = {
         cards: [
-            {name: "Any Song", image: '../assets/image/Zico-Any-song.jpg'},
-        ]
+            {
+                key: "0",   
+                name: "Any Song", 
+                tags: "Any, Song, Hip-hop",
+                image: require("../assets/images/Zico-Any-song.jpg")
+            },
+            {   
+                key: "1",
+                name: "Feel Special", 
+                tags: "Twicepop, RnB, Dance",
+                image: require("../assets/images/feelspecial.jpg")
+            },
+            {   
+                key: "2",
+                name: "I Want You Back", 
+                tags: "Twicepop, Cover, Jackson 5",
+                image: require("../assets/images/iwantyouback.jpg")
+            },
+            {   
+                key: "3",
+                name: "Signal", 
+                tags: "Twicepop, Aliens, SOTY2017",
+                image: require("../assets/images/signal.jpg")
+            },
+            {   
+                key: "4",
+                name: "Likey", 
+                tags: "Twicepop, Social Media, Canada",
+                image: require("../assets/images/twicetagram.jpg")
+            },
+            {   
+                key: "5",
+                name: "TT", 
+                tags: "Twicepop, Horror, Cosplaying",
+                image: require("../assets/images/TT.png")
+            },
+            {   
+                key: "6",
+                name: "What is Love", 
+                tags: "Twicepop, Love song, Movies",
+                image: require("../assets/images/whatislove.png")
+            },
+        ],
+        outOfCards: false,
     }
 
     handleYup (card) {
@@ -26,6 +68,30 @@ class Home extends Component {
     handleNope (card) {
         console.log(`Nope for ${card.name}`);
     }
+
+    // TO-DO
+    // cardRemoved (index) {
+    //     const cards = this.state.cards;
+    //     console.log(`The index is ${index}`);
+    
+    //     if (this.state.cards.length - index <= 3) {
+    //       console.log(`There are only ${this.state.cards.length - index - 1} cards left.`);
+    
+    //         if (!this.state.outOfCards) {
+    //             console.log(`Adding ${cards.length} more cards`)
+        
+    //             this.setState({
+    //                 cards: this.state.cards.concat(cards),
+    //                 outOfCards: true
+    //             })
+    //         }
+    //     } else if (this.state.outOfCards){ 
+    //         this.setState({
+    //             outOfCards: false
+    //         })
+    //     }
+    
+    //   }
 
 
     render() {
@@ -41,8 +107,13 @@ class Home extends Component {
                                 </View>
                             )
                         }}
-                        handleYup  = {this.handleYup}
-                        handleNope = {this.handleNope}
+                        handleYup        = {this.handleYup}
+                        handleNope       = {this.handleNope}
+                        stack            = {true}
+                        stackOffsetX     = {0}
+                        smoothTransition = {true}
+                        loop             = {true}
+                        // cardRemoved      = {this.cardRemoved.bind(this)}
                     />
                 </View>                
                 <View style={styles.footer}>
@@ -50,13 +121,13 @@ class Home extends Component {
                         style   = {styles.circle}
                         onPress = {this.handleYup}
                     >
-                        <Icon name="x" size={32} color="#ec5288" />
+                        <Icon name="x" size={24} color="#ec5288" />
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style   = {styles.circle}
                         onPress = {this.handleNope}
                     >
-                        <Icon name="heart" size={32} color="#6ee3b4" />
+                        <Icon name="heart" size={24} color="#6ee3b4" />
                     </TouchableOpacity>
                 </View>
             </SafeAreaView>
@@ -83,7 +154,7 @@ const styles = StyleSheet.create({
         width: w,
         height: h,
         marginLeft: 18,
-        marginTop: 100,
+        marginTop: 50,
     },
     cards: {
         width: w,
@@ -97,8 +168,8 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     circle: {
-        width: 64,
-        height: 64,
+        width: 48,
+        height: 48,
         borderRadius: 32,
         padding: 12,
         justifyContent: "center",

@@ -8,6 +8,7 @@ import LandingPage from '../screens/landingpage';
 import Signup from '../screens/signup';
 import Home from '../screens/home';
 import Header from '../common/Header';
+import Settings from '../screens/settings';
 
 export default function RouterComponent() {
     return (
@@ -36,9 +37,14 @@ export default function RouterComponent() {
                     type = 'reset'
                 >
                     <Scene
-                        title     = "Home"
-                        key       = "home"
+                        title     = 'Home'
+                        key       = 'home'
                         component = {Home}
+                    />
+                    <Scene
+                        title     = 'Settings'
+                        key       = 'settings'
+                        component = {Settings}
                     />
                 </Stack>
             </Stack>
