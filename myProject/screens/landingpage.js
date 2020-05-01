@@ -3,7 +3,7 @@ import {
     TouchableWithoutFeedback,
     Keyboard,
 } from 'react-native';
-import LoginOrCreateForm from '../common/LoginOrCreateForm';
+import LoginOrCreateForm from '../components/LoginOrCreateForm';
 
 
 export default function LandingPage() {

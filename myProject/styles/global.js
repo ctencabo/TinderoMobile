@@ -4,6 +4,7 @@ export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        alignContent: 'center',
     },
 
     input: {
@@ -24,13 +25,11 @@ export const globalStyles = StyleSheet.create({
     },
 
     titleText: {
-        // fontFamily: 'lato-bold',
         color: 'black',
         fontSize: 24
     },
 
     text: {
-        // fontFamily: 'lato',
         color: 'black',
         fontSize: 16
     },

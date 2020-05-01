@@ -1,55 +1,57 @@
 import React, { Component } from 'react';
 import {
-    Dimensions,
+    Slider,
     StyleSheet,
+    Text,
     View
 } from 'react-native';
-import { FontAwesome as Icon } from "@expo/vector-icons";
-import TagInput from 'react-native-tags-input';
-
-const mainColor = '#3ca897';
+import { globalStyles } from '../styles/global';
+import TagView from '../components/TagView';
 
 class Settings extends Component {
-
-    state = {
-        tags: {
-            tag: '',
-            tagArray: [],
-        },
-        tagsColor: mainColor,
-        tagsText: '#fff',
-    }
-
-    updateTagState = (state) => {
-        this.setState({
-            tags: state
-        })
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: 0
+        }
     }
 
     render() {
+        const { container } = globalStyles;
+        const selected = []
+        const tags = [
+            'Spicy',
+            'Sweet',
+            'Fast-food',
+            'Fusion',
+            'Korean',
+            'Fried',
+            'Steamed',
+            'Souped',
+            'Flavored',
+        ]
+
         return (
-            <View style = {styles.container}>
-                <TagInput
-                    updateState               = {this.updateTagState}
-                    tags                      = {this.state.tags}
-                    placeholder               = "Tags..."                            
-                    label                     = 'Press enter to add a tag'
-                    labelStyle                = {{color : '#fff'}}
-                    leftElement               = {<Icon 
-                                                    name  = "tags"
-                                                    color = {this.state.tagsText}
-                                                />}
-                    leftElementContainerStyle = {{marginLeft : 3}}
-                    containerStyle            = {{width : (Dimensions.get('window').width - 40)}}
-                    inputContainerStyle       = {[styles.textInput, {backgroundColor : this.state.tagsColor}]}
-                    inputStyle                = {{color : this.state.tagsText}}
-                    onFocus                   = {() => this.setState({tagsColor: '#fff', tagsText: mainColor})}
-                    onBlur                    = {() => this.setState({tagsColor: mainColor, tagsText: '#fff'})}
-                    autoCorrect               = {false}
-                    tagStyle                  = {styles.tag}
-                    tagTextStyle              = {styles.tagText}
-                    keysForTag                = {', '}
+            <View style = {container}>
+                <TagView
+                    all         = {tags}
+                    selected    = {selected}
+                    isExclusive = {false}
                 />
+                <View style = {styles.container}>
+                    <Text style = {globalStyles.titleText}>Location Distance:</Text>
+                    <Text style = {globalStyles.text}>{this.state.value} km</Text>
+                    <Slider 
+                        style         = {{width  :  200, height: 40}}
+                        minimumValue  = {0}
+                        maximumValue  = {50}
+                        step          = {1}
+                        onValueChange = {(value) => {
+                            this.setState({ value: value})
+                        }}
+                    />
+                </View>
+                
             </View>
         )
     }
@@ -58,25 +60,11 @@ class Settings extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        flex: 4,
         alignItems: 'center',
-        backgroundColor: mainColor,
-    },
-    textInput: {
-        height: 40,
-        borderColor: 'white',
-        borderWidth: 1,
-        marginTop: 8,
-        borderRadius: 5,
-        padding: 3,
-    },
-    tag: {
-        backgroundColor: '#fff'
-    },
-    tagText: {
-        color: mainColor
-    },
+        justifyContent: 'center',
+    }
 })
+
 
 export default Settings;
