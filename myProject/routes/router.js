@@ -2,18 +2,22 @@ import React from 'react';
 import {
     Scene,
     Stack,
-    Router
+    Router,
+    Drawer
 } from 'react-native-router-flux';
+
 import LandingPage from '../screens/landingpage';
 import Signup from '../screens/signup';
 import Home from '../screens/home';
-import Header from '../common/Header';
 import Settings from '../screens/settings';
+
+import Header from '../common/Header';
+import SideBar from '../common/SideBar';
 
 export default function RouterComponent() {
     return (
         <Router>
-            <Stack hideNavBar key='root'>
+            <Stack key='root'>
                 <Stack
                     hideNavBar
                     key  = 'auth'
@@ -22,30 +26,37 @@ export default function RouterComponent() {
                     <Scene
                         key        = 'landingpage'
                         component  = {LandingPage}
-                        title      = 'Landing Page'
                     />
                     <Scene
                         key        = 'signup'
                         component  = {Signup}
-                        title      = 'Register'
                     />
                 </Stack>
                 <Stack
-                    // hideNavBar
                     navBar = {Header}
                     key  = 'main'
                     type = 'reset'
                 >
-                    <Scene
-                        title     = 'Home'
-                        key       = 'home'
-                        component = {Home}
-                    />
-                    <Scene
-                        title     = 'Settings'
-                        key       = 'settings'
-                        component = {Settings}
-                    />
+                    <Drawer
+                        hideNavBar
+                        open             = {false}
+                        type             = "overlay"
+                        key              = "drawer"
+                        contentComponent = {SideBar}
+                        drawerWidth      = {300}
+                    >
+                        <Scene
+                            hideNavBar
+                            key       = 'home'
+                            component = {Home}
+                            initial
+                        />
+                        <Scene
+                            hideNavBar
+                            key       = 'settings'
+                            component = {Settings}
+                        />
+                    </Drawer>
                 </Stack>
             </Stack>
         </Router>

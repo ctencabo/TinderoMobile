@@ -33,11 +33,6 @@ class Settings extends Component {
 
         return (
             <View style = {container}>
-                <TagView
-                    all         = {tags}
-                    selected    = {selected}
-                    isExclusive = {false}
-                />
                 <View style = {styles.container}>
                     <Text style = {globalStyles.titleText}>Location Distance:</Text>
                     <Text style = {globalStyles.text}>{this.state.value} km</Text>
@@ -51,7 +46,12 @@ class Settings extends Component {
                         }}
                     />
                 </View>
-                
+                <Text style = {globalStyles.titleText}>Eat me, eat me, eat me up</Text>
+                <TagView
+                    all         = {tags}
+                    selected    = {selected}
+                    isExclusive = {false}
+                />
             </View>
         )
     }
@@ -60,7 +60,7 @@ class Settings extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 4,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     }
