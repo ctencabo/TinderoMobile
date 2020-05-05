@@ -43,7 +43,7 @@ export default function RouterComponent() {
                         type             = "overlay"
                         key              = "drawer"
                         contentComponent = {SideBar}
-                        drawerWidth      = {300}
+                        drawerWidth      = {200}
                     >
                         <Scene
                             hideNavBar

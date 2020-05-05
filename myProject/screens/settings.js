@@ -18,7 +18,6 @@ class Settings extends Component {
 
     render() {
         const { container } = globalStyles;
-        const selected = []
         const tags = [
             'Spicy',
             'Sweet',
@@ -30,6 +29,7 @@ class Settings extends Component {
             'Souped',
             'Flavored',
         ]
+        const selected = []
 
         return (
             <View style = {container}>
@@ -46,7 +46,7 @@ class Settings extends Component {
                         }}
                     />
                 </View>
-                <Text style = {globalStyles.titleText}>Eat me, eat me, eat me up</Text>
+                <Text style = {[globalStyles.titleText, styles.titleText]}>Eat me, eat me, eat me up</Text>
                 <TagView
                     all         = {tags}
                     selected    = {selected}
@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    titleText: {
+        alignSelf: 'center'
     }
 })
 

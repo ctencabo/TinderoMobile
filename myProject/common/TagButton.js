@@ -19,8 +19,8 @@ class TagButton extends Component {
                 height: 46,
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingLeft: 16,
-                paddingRight: 16
+                paddingLeft: 14,
+                paddingRight: 14
             },
             touchable: {
                 marginLeft: 4,
@@ -28,10 +28,9 @@ class TagButton extends Component {
                 marginBottom: 8
             },
             text: {
-                fontSize: 18,
+                fontSize: 14,
                 textAlign: 'center',
                 color: this.props.textColor,
-                fontSize: 16
             }
         });
     }
@@ -40,7 +39,7 @@ class TagButton extends Component {
         const styles = this.makeStyles();
 
         return (
-            <TouchableOpacity style = {styles.touchable }>
+            <TouchableOpacity style = { styles.touchable } onPress={ this.props.onPress }>
                 <View style = { styles.view }>
                     <Text style = { styles.text }>{this.props.title}</Text>
                 </View>

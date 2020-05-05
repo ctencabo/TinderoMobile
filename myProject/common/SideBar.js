@@ -53,6 +53,15 @@ class SideBar extends Component {
                         </Right>
                     </ListItem>
 
+                    <ListItem onPress={() => Actions.landingpage()}>
+                        <Left>
+                            <Text style = {[text,color]}>Logout</Text>
+                        </Left>
+                        <Right >
+                            <Icon name="arrow-back" />
+                        </Right>
+                    </ListItem>
+
                 </List>
             </SafeAreaView>
         )

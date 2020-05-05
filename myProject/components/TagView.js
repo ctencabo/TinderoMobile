@@ -20,13 +20,12 @@ class TagView extends Component {
         }
     }
 
-    onPress = (tag) => {
+    tagHandler = (tag) => {
         let selected
-        console.log('Here')
         if (this.props.isExclusive) {
             selected = [tag]
         } else {
-            selected = addOrRemove(this.state.selected, tag)
+            selected = this.addOrRemove(this.state.selected, tag)
         }
 
         this.setState({
@@ -56,7 +55,7 @@ class TagView extends Component {
                     backgroundColor = {backgroundColor}
                     textColor       = {textColor}
                     borderColor     = {borderColor}
-                    onPress         = {() => { this.onPress(tag) }}
+                    onPress         = {() =>  this.tagHandler(tag) }
                     key             = {i}
                     title           = {tag} 
                 />
