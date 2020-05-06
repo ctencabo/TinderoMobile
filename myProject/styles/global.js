@@ -26,11 +26,21 @@ export const globalStyles = StyleSheet.create({
 
     titleText: {
         color: 'black',
-        fontSize: 24
+        fontSize: 24,
+        fontFamily: 'lato-bold'
     },
 
     text: {
         color: 'black',
-        fontSize: 16
+        fontSize: 16,
+        fontFamily: 'lato'
     },
+
+    lato: {
+        fontFamily: 'lato'
+    },
+
+    latoBold: {
+        fontFamily: 'lato-bold'
+    }
 })

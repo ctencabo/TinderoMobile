@@ -12,12 +12,40 @@ class Settings extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 0
+            value           : 5,
+            currentLongitude: 'unknown',
+            currentLatitude : 'unknown',
         }
     }
 
+    componentDidMount = () => {
+        navigator.geolocation.getCurrentPosition(
+
+        position => {
+            const currentLongitude = JSON.stringify(position.coords.longitude);
+            const currentLatitude = JSON.stringify(position.coords.latitude);
+            
+            this.setState({ currentLongitude: currentLongitude });
+            this.setState({ currentLatitude: currentLatitude });
+        },
+
+        error => alert(error.message),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        )
+
+        this.watchID = navigator.geolocation.watchPosition(position => {
+            console.log(position);
+
+            const currentLongitude = JSON.stringify(position.coords.longitude);
+            const currentLatitude = JSON.stringify(position.coords.latitude);
+            
+            this.setState({ currentLongitude: currentLongitude });
+            this.setState({ currentLatitude: currentLatitude });
+        })
+    }
+
     render() {
-        const { container } = globalStyles;
+        const { container, lato } = globalStyles;
         const tags = [
             'Spicy',
             'Sweet',
@@ -34,11 +62,16 @@ class Settings extends Component {
         return (
             <View style = {container}>
                 <View style = {styles.container}>
+                    <View style = {{marginBottom: 20, padding: 5}}>
+                        <Text style = {globalStyles.titleText}>You are here:</Text>
+                        <Text style = {globalStyles.text}>Latitude: {this.state.currentLatitude}</Text>
+                        <Text style = {globalStyles.text}>Longitude: {this.state.currentLongitude}</Text>
+                    </View>                    
                     <Text style = {globalStyles.titleText}>Location Distance:</Text>
                     <Text style = {globalStyles.text}>{this.state.value} km</Text>
                     <Slider 
                         style         = {{width  :  200, height: 40}}
-                        minimumValue  = {0}
+                        minimumValue  = {5}
                         maximumValue  = {50}
                         step          = {1}
                         onValueChange = {(value) => {

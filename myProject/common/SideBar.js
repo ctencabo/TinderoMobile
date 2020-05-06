@@ -20,7 +20,7 @@ import { globalStyles } from '../styles/global';
 class SideBar extends Component {
     render() {
 
-        const { text } = globalStyles;
+        const { text, lato } = globalStyles;
         const { color } = styles;
 
         return (
@@ -28,7 +28,7 @@ class SideBar extends Component {
                 <List>
                     <ListItem onPress={() => Actions.home()}>
                         <Left>
-                            <Text style = {[text,color]}>Home</Text>
+                            <Text style = {[text,color,lato]}>Home</Text>
                         </Left>
                         <Right >
                             <Icon name="arrow-forward" />
@@ -37,7 +37,7 @@ class SideBar extends Component {
 
                     <ListItem>
                         <Left>
-                            <Text style = {[text,color]}>Profile</Text>
+                            <Text style = {[text,color,lato]}>Profile</Text>
                         </Left>
                         <Right>
                             <Icon name="arrow-forward" />
@@ -46,7 +46,7 @@ class SideBar extends Component {
 
                     <ListItem onPress={() => Actions.settings()}>
                         <Left>
-                            <Text style = {[text,color]}>Settings</Text>
+                            <Text style = {[text,color,lato]}>Settings</Text>
                         </Left>
                         <Right >
                             <Icon name="arrow-forward" />
@@ -55,7 +55,7 @@ class SideBar extends Component {
 
                     <ListItem onPress={() => Actions.landingpage()}>
                         <Left>
-                            <Text style = {[text,color]}>Logout</Text>
+                            <Text style = {[text,color,lato]}>Logout</Text>
                         </Left>
                         <Right >
                             <Icon name="arrow-back" />

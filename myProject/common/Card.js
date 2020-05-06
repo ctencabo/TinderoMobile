@@ -5,11 +5,13 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
+import { globalStyles } from '../styles/global';
 
 class Card extends Component {
 
     render() {
         const { image, overlay, header, footer, name, tags } = styles;
+        const { lato } = globalStyles;
 
         return (
             <View style = {StyleSheet.absoluteFill} >
@@ -20,8 +22,8 @@ class Card extends Component {
                     </View>
                     <View style = { footer } >
                         {/* TO-DO */}
-                        <Text style={ name }>{this.props.name}</Text>
-                        <Text style={ [name, tags] }>Tags: {this.props.tags}</Text>
+                        <Text style={ [name, lato] }>{this.props.name}</Text>
+                        <Text style={ [name, tags, lato] }>Tags: {this.props.tags}</Text>
                     </View>
                 </View>
             </View>
@@ -47,6 +49,7 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: "column",
         backgroundColor: 'rgba(0,0,0,.6)',
+        paddingTop: 10,
         borderBottomEndRadius: 8,
         borderBottomStartRadius: 8,
     },

@@ -9,29 +9,6 @@ import { MaterialIcons as Icon } from "@expo/vector-icons";
 import { Actions } from 'react-native-router-flux';
 
 class Header extends Component{
-    // renderLeftComponent() {
-
-    // }
-
-
-    // renderLogo() {
-    //     return (
-    //         <Image 
-    //             style = {styles.headerImage} 
-    //             resizeMode = "contain"
-    //             source = {require('../assets/images/logo.png')} 
-    //         />
-    //     )
-    // }
-
-    // renderRightComponent() {
-    //     return (
-    //         <TouchableWithoutFeedback>
-    //             <Text style = {styles.text}>Settings</Text>
-    //         </TouchableWithoutFeedback>
-    //     )
-    // }
-
     render() {
         return(
             <View style = {styles.backgroundStyle}>
@@ -70,6 +47,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: 150,
         height: 40,
+        marginRight: 30,
     },
     icon: {
         paddingTop:10
