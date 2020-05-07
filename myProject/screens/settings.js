@@ -21,16 +21,17 @@ class Settings extends Component {
     componentDidMount = () => {
         navigator.geolocation.getCurrentPosition(
 
-        position => {
-            const currentLongitude = JSON.stringify(position.coords.longitude);
-            const currentLatitude = JSON.stringify(position.coords.latitude);
-            
-            this.setState({ currentLongitude: currentLongitude });
-            this.setState({ currentLatitude: currentLatitude });
-        },
+            position => {
+                const currentLongitude = JSON.stringify(position.coords.longitude);
+                const currentLatitude = JSON.stringify(position.coords.latitude);
+                console.log("Longitude:" + currentLongitude)
+                console.log("Latitude:" + currentLatitude)
+                this.setState({ currentLongitude: currentLongitude });
+                this.setState({ currentLatitude: currentLatitude });
+            },
 
-        error => alert(error.message),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+            error => alert(error.message),
+                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
         )
 
         this.watchID = navigator.geolocation.watchPosition(position => {

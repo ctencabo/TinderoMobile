@@ -4,11 +4,12 @@ import { Feather as Icon } from "@expo/vector-icons";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SwipeCards from 'react-native-swipe-cards';
 import Card from '../common/Card';
+import Loader from '../common/Loader';
+import axios from 'axios';
+import { onCameraDidChangeTrackingState } from 'expo/build/AR';
 
 const { width, height } = Dimensions.get("window");
-// const φ = (1 + Math.sqrt(5)) / 2;
 const w = width - 36;
-// const h = w * φ;
 const h = height - 250;
 
 
@@ -59,6 +60,25 @@ class Home extends Component {
             },
         ],
         outOfCards: false,
+        data: [],
+        isLoading: true,
+    }
+
+    async componentDidMount() {
+        try {
+            const result = await axios.request({
+                method: 'get',
+                url: `https://developers.zomato.com/api/v2.1/search?entity_id=10564&entity_type=city`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-key': 'cfaa05445714fe7891b111c9a5d39f82'
+                }
+            });
+            this.setState({ data: result.data.restaurants, isLoading: false });
+        } catch (err) {
+            this.setState({ data: [], isLoading: false })
+            console.log(err);
+        }
     }
 
     handleYup (card) {
@@ -98,23 +118,27 @@ class Home extends Component {
         return (
             <SafeAreaView style = {styles.container}>
                 <View style = {styles.deck}>
-                    <SwipeCards 
-                        cards      = {this.state.cards}
-                        renderCard = {(cardData) => {
-                            return (
-                                <View style = {styles.cards}>
-                                    < Card {...cardData}/>
-                                </View>
-                            )
-                        }}
-                        handleYup        = {this.handleYup}
-                        handleNope       = {this.handleNope}
-                        stack            = {true}
-                        stackOffsetX     = {0}
-                        smoothTransition = {true}
-                        loop             = {true}
-                        // cardRemoved      = {this.cardRemoved.bind(this)}
-                    />
+                    {this.state.isLoading ? <Loader /> : 
+                        <SwipeCards 
+                            cards      = {this.state.data}
+                            renderCard = {(cardData) => {
+                                return (
+                                    <View style = {styles.cards}>
+                                        < Card 
+                                            {...cardData}
+                                        />
+                                    </View>
+                                )
+                            }}
+                            handleYup        = {this.handleYup}
+                            handleNope       = {this.handleNope}
+                            stack            = {true}
+                            stackOffsetX     = {0}
+                            smoothTransition = {true}
+                            loop             = {true}
+                            // cardRemoved      = {this.cardRemoved.bind(this)}
+                        />
+                    }
                 </View>                
                 <View style={styles.footer}>
                     <TouchableOpacity 
