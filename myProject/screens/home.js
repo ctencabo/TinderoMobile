@@ -82,11 +82,11 @@ class Home extends Component {
     }
 
     handleYup (card) {
-        console.log(`Yup for ${card.name}`);
+        console.log(`Yup for ${card.restaurant.name}`);
     }
 
     handleNope (card) {
-        console.log(`Nope for ${card.name}`);
+        console.log(`Nope for ${card.restaurant.name}`);
     }
 
     // TO-DO
@@ -121,11 +121,16 @@ class Home extends Component {
                     {this.state.isLoading ? <Loader /> : 
                         <SwipeCards 
                             cards      = {this.state.data}
+                            // cardKey    = {this.state.data.restaurant.id}
                             renderCard = {(cardData) => {
                                 return (
                                     <View style = {styles.cards}>
                                         < Card 
-                                            {...cardData}
+                                            // {...cardData}
+                                            key      = {cardData.restaurant.id}
+                                            name     = {cardData.restaurant.name}
+                                            location = {cardData.restaurant.location.address}
+                                            image    = {cardData.restaurant.thumb}
                                         />
                                     </View>
                                 )

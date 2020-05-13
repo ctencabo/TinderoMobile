@@ -15,21 +15,20 @@ class Card extends Component {
     render() {
         const { image, overlay, header, footer, name, tags } = styles;
         const { lato } = globalStyles;
-        const thumbnail = 'uri: ' + this.props.restaurant.thumb 
-        console.log(thumbnail)
+        // const thumbnail = 'uri: ' + this.props.restaurant.thumb
 
         return (
             <View style = {StyleSheet.absoluteFill} >
-                <Image style = { image } source = {thumbnail} />
+                <Image style = { image } source = {{uri: this.props.image}} />
                 <View style = { overlay } >
                     <View style = { header } >
                         {/* TO-DO */}
                     </View>
                     <View style = { footer } >
                         {/* TO-DO */}
-                        <Text style={ [name, lato] }>{this.props.restaurant.name}</Text>
+                        <Text style={ [name, lato] }>{this.props.name}</Text>
                         {/* <Text style={ [name, tags, lato] }>Tags: {this.props.tags}</Text> */}
-                        <Text style={ [name, tags, lato] }>Location: {this.props.restaurant.location.address}</Text>
+                        <Text style={ [name, tags, lato] }>Location: {this.props.location}</Text>
                     </View>
                 </View>
             </View>

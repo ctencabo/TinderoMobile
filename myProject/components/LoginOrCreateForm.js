@@ -36,9 +36,9 @@ class LoginOrCreateForm extends Component {
     }
 
     renderCreateLogo() {
-        const { titleText }        = globalStyles;
+        const { titleText }                    = globalStyles;
         const { logo, signupLogo, centerText } = styles;
-        const logoStyle = this.props.create ? signupLogo : logo
+        const logoStyle                        = this.props.create ? signupLogo: logo
 
         if(!this.props.create) {
             return (
@@ -60,9 +60,9 @@ class LoginOrCreateForm extends Component {
     }
 
     renderCreateForm() {
-        const { input }      = globalStyles;
-        const { formInput }  = styles;
-        const textInputStyle = [input, formInput]
+        const { input, lato } = globalStyles;
+        const { formInput }   = styles;
+        const textInputStyle  = [input, formInput, lato]
 
         if( this.props.create ) {
             return (
